@@ -1,0 +1,269 @@
+<!-- conference-registration.component.html -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="text-center">Inscription pour {{ title }}</h2>
+
+      <div class="card hide" id="error">
+        <h5 class="card-header">Corrigez les erreurs suivantes</h5>
+        <div class="card-body">
+          <ul class="card-text" id="content-error"></ul>
+        </div>
+      </div>
+
+      <div class="alert alert-success hide" id="message" role="alert">
+        Votre inscription a été confirmée
+      </div>
+
+      <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+        <div>
+          <h3>Qui êtes vous?</h3>
+
+          <div class="row mb-2">
+            <div class="form-group col-md-6 mb-2">
+              <label for="firstName">Prénom*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                formControlName="firstName"
+                placeholder="Prénom"
+              />
+            </div>
+
+            <div class="form-group col-md-6 mb-2">
+              <label for="name">Nom*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                formControlName="name"
+                placeholder="Nom"
+              />
+            </div>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="email">Email address*</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              formControlName="email"
+              placeholder="Adresse Email"
+            />
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="sexe">Sexe</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexe"
+                  formControlName="sexe"
+                  id="homme"
+                  value="monsieur"
+                />
+                <label class="form-check-label" for="homme"
+                  >Je suis un homme</label
+                >
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexe"
+                  formControlName="sexe"
+                  id="femme"
+                  value="madame"
+                />
+                <label class="form-check-label" for="femme"
+                  >Je suis une femme</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="company">Institution*</label>
+            <input
+              type="text"
+              class="form-control"
+              id="company"
+              name="company"
+              formControlName="company"
+              placeholder="Institution"
+            />
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6 mb-2">
+              <label for="address">Adresse*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                name="address"
+                formControlName="address"
+                placeholder="Adresse"
+              />
+            </div>
+
+            <div class="form-group col-md-6 mb-2">
+              <label for="pays">Pays*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="pays"
+                name="pays"
+                formControlName="pays"
+                placeholder="Pays"
+              />
+            </div>
+
+            <div class="form-group col-md-6 mb-2">
+              <label for="code_postal">Code postal*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="code_postal"
+                name="code_postal"
+                formControlName="code_postal"
+                placeholder="Code postal"
+              />
+            </div>
+
+            <div class="form-group col-md-6 mb-2">
+              <label for="ville">Ville*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="ville"
+                name="ville"
+                formControlName="ville"
+                placeholder="Ville"
+              />
+            </div>
+
+            <div class="form-group col-md-6 mb-2">
+              <label for="page_web">Page web personnelle</label>
+              <input
+                type="text"
+                class="form-control"
+                id="page_web"
+                name="page_web"
+                formControlName="page_web"
+                placeholder="Page web personnelle"
+              />
+            </div>
+
+            <div class="form-group col-md-6 mb-2">
+              <label for="page_web_institution">Page web institution</label>
+              <input
+                type="text"
+                class="form-control"
+                id="page_web_institution"
+                name="page_web_institution"
+                formControlName="page_web_institution"
+                placeholder="Page web institution"
+              />
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div>
+          <h3>Quelle inscription souhaitez-vous?</h3>
+
+          <div class="form-group">
+            <div class="form-check" *ngFor="let insp of inscription | keyvalue">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inscription"
+                formControlName="inscription"
+                value="{{ insp.value.price }}"
+              />
+              <label class="form-check-label"
+                >{{ insp.value.label }} ({{ insp.value.price }} EUR)</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div>
+          <h3>Quel hébergement souhaitez-vous?</h3>
+
+          <div class="form-group">
+            <div class="form-check" *ngFor="let hbg of hebergement | keyvalue">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="hebergement"
+                formControlName="hebergement"
+                value="{{ hbg.value.price }}"
+              />
+              <label class="form-check-label"
+                >{{ hbg.value.label }} ({{ hbg.value.price }} EUR)</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <input
+          type="submit"
+          class="btn btn-primary mb-3"
+          id="submit"
+          value="Pré-valider"
+        />
+      </form>
+
+      <div class="card hide" id="success">
+        <h5 class="card-header">Récapitulatif de l'inscription</h5>
+        <div class="card-body">
+          <div class="card-text">
+            <p>
+              Bonjour {{ inscriptionForm.value.sexe }}
+              {{ inscriptionForm.value.name }}, vous avez procédé à une
+              inscription pour la conférence {{ title }}.
+            </p>
+            <p>Le détail de votre enregistrement est le suivant:</p>
+            <ul>
+              <li>{{ inscriptionForm.value.inscription }} EUR</li>
+              <li>{{ inscriptionForm.value.hebergement }} EUR</li>
+            </ul>
+            <p>Le montant total est de {{ montantTotal }} EUR</p>
+            <p>
+              Un email vous sera envoyé prochainement à cette adresse
+              {{ inscriptionForm.value.email }} pour la mise en paiement de
+              votre inscription. <br />Merci de consulter votre messagerie et de
+              procéder au réglement d e votre inscription.
+            </p>
+            <p>
+              En vous remerciant de votre inscription, à très bientôt à la
+              conférence {{ title }}
+            </p>
+          </div>
+
+          <button class="btn btn-primary me-3" (click)="onConfirm()">
+            Confirmer
+          </button>
+          <button class="btn btn-primary" (click)="reloadPage()">
+            Modifier les données
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
