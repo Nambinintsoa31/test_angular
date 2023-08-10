@@ -183,7 +183,10 @@
           <h3>Quelle inscription souhaitez-vous?</h3>
 
           <div class="form-group">
-            <div class="form-check" *ngFor="let insp of inscription | keyvalue">
+            <div
+              class="form-check"
+              *ngFor="let insp of data_inscription | keyvalue"
+            >
               <input
                 class="form-check-input"
                 type="radio"
@@ -204,7 +207,10 @@
           <h3>Quel hébergement souhaitez-vous?</h3>
 
           <div class="form-group">
-            <div class="form-check" *ngFor="let hbg of hebergement | keyvalue">
+            <div
+              class="form-check"
+              *ngFor="let hbg of data_hebergement | keyvalue"
+            >
               <input
                 class="form-check-input"
                 type="radio"
@@ -229,6 +235,7 @@
         />
       </form>
 
+      <!--Début Récapitulatif de l'inscription-->
       <div class="card hide" id="success">
         <h5 class="card-header">Récapitulatif de l'inscription</h5>
         <div class="card-body">
@@ -243,7 +250,7 @@
               <li>{{ inscriptionForm.value.inscription }} EUR</li>
               <li>{{ inscriptionForm.value.hebergement }} EUR</li>
             </ul>
-            <p>Le montant total est de {{ montantTotal }} EUR</p>
+            <p>Le montant total est de {{ montantTotal }} EUR.</p>
             <p>
               Un email vous sera envoyé prochainement à cette adresse
               {{ inscriptionForm.value.email }} pour la mise en paiement de
@@ -252,18 +259,19 @@
             </p>
             <p>
               En vous remerciant de votre inscription, à très bientôt à la
-              conférence {{ title }}
+              conférence {{ title }}.
             </p>
           </div>
 
           <button class="btn btn-primary me-3" (click)="onConfirm()">
             Confirmer
           </button>
-          <button class="btn btn-primary" (click)="reloadPage()">
+          <button class="btn btn-primary" (click)="onUpdate()">
             Modifier les données
           </button>
         </div>
       </div>
+      <!--Fin Récapitulatif de l'inscription-->
     </div>
   </div>
 </div>

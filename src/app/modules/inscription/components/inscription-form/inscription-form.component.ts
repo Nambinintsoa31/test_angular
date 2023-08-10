@@ -11,7 +11,8 @@ export class InscriptionFormComponent implements OnInit {
   inscriptionForm!: FormGroup;
   title = '#MaConf2020';
   montantTotal = 0;
-  hebergement = {
+
+  data_hebergement = {
     avec_reservation: {
       price: 150,
       label: 'Avec Réservation',
@@ -22,9 +23,7 @@ export class InscriptionFormComponent implements OnInit {
     },
   };
 
-  constructor(private router: Router) {}
-
-  inscription = {
+  data_inscription = {
     etudiant: {
       price: 150,
       label: 'Etudiant',
@@ -96,17 +95,20 @@ export class InscriptionFormComponent implements OnInit {
   onConfirm() {
     document.getElementById('message')?.classList.remove('hide');
     setTimeout(() => {
-      this.reloadPage();
-    }, 2000);
+      this.activateForms();
+      this.inscriptionForm.reset();
+    }, 1000);
   }
 
-  reloadPage() {
+  onUpdate() {
+    this.activateForms();
+  }
+
+  activateForms() {
     document.getElementById('error')?.classList.add('hide');
     document.getElementById('success')?.classList.add('hide');
     document.getElementById('message')?.classList.add('hide');
     document.getElementById('submit')?.removeAttribute('disabled');
-
-    this.inscriptionForm.reset();
     this.inscriptionForm.enable();
   }
 }
